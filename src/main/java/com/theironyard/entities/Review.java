@@ -18,13 +18,13 @@ public class Review {
     @Column(nullable = false)
     String text;
 
-    @Column(nullable = false)
-    int lecturerId;
+    @ManyToOne
+    Lecturer lecturerId;
 
     @Column(nullable = false)
     boolean isGood;
 
-    public Review(String author, String text, int lecturerId, boolean isGood) {
+    public Review(String author, String text, Lecturer lecturerId, boolean isGood) {
         this.author = author;
         this.text = text;
         this.lecturerId = lecturerId;
@@ -58,11 +58,11 @@ public class Review {
         this.text = text;
     }
 
-    public int getLecturerId() {
+    public Lecturer getLecturerId() {
         return lecturerId;
     }
 
-    public void setLecturerId(int lecturerId) {
+    public void setLecturerId(Lecturer lecturerId) {
         this.lecturerId = lecturerId;
     }
 

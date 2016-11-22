@@ -28,20 +28,19 @@ public class HannibalLecturerController {
     LecturerRepository lectures;
 
     @RequestMapping(path = "/lecturers", method = RequestMethod.POST)
-    public void postLecture(HttpServletResponse response, String name, String topic, String image) throws IOException {
+    public void postLecture(String name, String topic, String image) throws IOException {
         Lecturer lecturer = new Lecturer(name, topic, image);
         lectures.save(lecturer);
-        response.sendRedirect("/");
     }
     @RequestMapping(path = "/reviews", method = RequestMethod.POST)
-    public void postReview(HttpServletResponse response, String author, String text, int lecturerId, boolean isGood) throws IOException {
+    public void postReview(String author, String text, int lecturerId, boolean isGood) throws IOException {
         Review review = new Review(author, text, lecturerId, isGood);
         reviews.save(review);
-        response.sendRedirect("/");
     }
     @RequestMapping(path = "/lecturers", method = RequestMethod.GET)
     public List<Lecturer> getLecturers() throws Exception {
        return (List<Lecturer>) lectures.findAll();
+
     }
     @RequestMapping(path = "/reviews", method = RequestMethod.GET)
     public List<Review> getReviews() throws Exception {
